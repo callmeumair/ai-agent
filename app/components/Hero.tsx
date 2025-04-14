@@ -34,11 +34,11 @@ export default function Hero() {
   }
 
   return (
-    <section className="relative bg-gradient-to-b from-white via-gray-50 to-white overflow-hidden">
+    <section className="relative bg-gradient-to-b from-black via-gray-900 to-black overflow-hidden">
       {/* Animated Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(0,0,0,0.03),transparent_50%)]"></div>
-        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.03]"></div>
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,rgba(255,255,255,0.03),transparent_50%)]"></div>
+        <div className="absolute inset-0 bg-[url('/grid.svg')] opacity-[0.05]"></div>
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent"></div>
       </div>
 
@@ -52,7 +52,7 @@ export default function Hero() {
         >
           <motion.div
             variants={itemVariants}
-            className="inline-flex items-center gap-2 bg-primary/10 text-primary px-4 py-2 rounded-full text-sm font-medium mb-8 hover:bg-primary/20 transition-colors duration-300"
+            className="inline-flex items-center gap-2 bg-primary/20 text-primary-light px-4 py-2 rounded-full text-sm font-medium mb-8 hover:bg-primary/30 transition-colors duration-300"
           >
             <FaGithub className="text-lg" />
             <span>80.5k+ stars on GitHub</span>
@@ -61,18 +61,18 @@ export default function Hero() {
 
           <motion.h1
             variants={itemVariants}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-gray-900 to-primary"
+            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight bg-clip-text text-transparent bg-gradient-to-r from-white to-primary-light"
           >
             Flexible AI workflow automation for{' '}
             <span className="relative">
               technical teams
-              <span className="absolute -bottom-2 left-0 w-full h-1 bg-primary/20 rounded-full"></span>
+              <span className="absolute -bottom-2 left-0 w-full h-1 bg-primary/30 rounded-full"></span>
             </span>
           </motion.h1>
 
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed"
+            className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed"
           >
             Build with the precision of code or the speed of drag-n-drop. Host with on-prem control or in-the-cloud convenience.
           </motion.p>
@@ -84,7 +84,7 @@ export default function Hero() {
             {session ? (
               <Link
                 href="/dashboard"
-                className="group relative bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-lg hover:shadow-xl"
+                className="group relative bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-light transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-lg hover:shadow-primary/20"
               >
                 <span className="relative z-10 flex items-center">
                   Go to Dashboard
@@ -96,13 +96,13 @@ export default function Hero() {
                     <FaArrowRight />
                   </motion.span>
                 </span>
-                <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </Link>
             ) : (
               <>
                 <Link
                   href="/signup"
-                  className="group relative bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-dark transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-lg hover:shadow-xl"
+                  className="group relative bg-primary text-white px-8 py-4 rounded-lg font-semibold hover:bg-primary-light transition-all duration-300 transform hover:scale-105 flex items-center justify-center shadow-lg hover:shadow-primary/20"
                 >
                   <span className="relative z-10 flex items-center">
                     Get Started
@@ -114,11 +114,11 @@ export default function Hero() {
                       <FaArrowRight />
                     </motion.span>
                   </span>
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-dark rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary-light rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                 </Link>
                 <Link
                   href="/demo"
-                  className="group relative border-2 border-primary bg-transparent text-primary px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
+                  className="group relative border-2 border-primary bg-transparent text-primary-light px-8 py-4 rounded-lg font-semibold hover:bg-primary hover:text-white transition-all duration-300 transform hover:scale-105 flex items-center justify-center"
                 >
                   <span className="relative z-10">Talk to Sales</span>
                   <div className="absolute inset-0 bg-primary rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -131,14 +131,14 @@ export default function Hero() {
             variants={itemVariants}
             className="mt-16 flex flex-col items-center gap-6"
           >
-            <span className="text-sm text-gray-500 uppercase tracking-wider">Trusted by leading companies</span>
+            <span className="text-sm text-gray-400 uppercase tracking-wider">Trusted by leading companies</span>
             <div className="flex items-center gap-8 md:gap-12">
               {['cisco', 'microsoft', 'twilio', 'zendesk'].map((company) => (
                 <motion.img
                   key={company}
                   src={`/${company}.svg`}
                   alt={company}
-                  className="h-6 opacity-50 hover:opacity-100 transition-opacity duration-300"
+                  className="h-6 opacity-40 hover:opacity-100 transition-opacity duration-300 filter invert"
                   whileHover={{ scale: 1.1 }}
                 />
               ))}
