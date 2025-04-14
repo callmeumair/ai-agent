@@ -70,7 +70,7 @@ export default function Solutions() {
   }
 
   return (
-    <section className="py-20 bg-white">
+    <section className="py-24 bg-gradient-to-b from-white to-gray-50">
       <motion.div
         ref={ref}
         variants={containerVariants}
@@ -80,7 +80,7 @@ export default function Solutions() {
       >
         <motion.h2
           variants={itemVariants}
-          className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900"
+          className="text-3xl md:text-4xl font-bold text-center mb-16 text-gray-900"
         >
           Use Cases
         </motion.h2>
@@ -91,30 +91,33 @@ export default function Solutions() {
               key={index}
               variants={itemVariants}
               whileHover={{ y: -5 }}
-              className="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300"
+              className="group relative bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden"
             >
-              <div className="flex flex-col md:flex-row gap-6">
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+              <div className="relative flex flex-col md:flex-row gap-6">
                 <motion.div
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.5 }}
-                  className="flex-shrink-0 p-4 bg-primary/10 rounded-full"
+                  className="flex-shrink-0 p-4 bg-primary/10 rounded-full group-hover:bg-primary/20 transition-colors duration-300"
                 >
                   {solution.icon}
                 </motion.div>
                 <div>
-                  <h3 className="text-xl font-semibold mb-2 text-gray-900">{solution.title}</h3>
-                  <p className="text-gray-600 mb-4">{solution.description}</p>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900 group-hover:text-primary transition-colors duration-300">
+                    {solution.title}
+                  </h3>
+                  <p className="text-gray-600 mb-4 leading-relaxed">{solution.description}</p>
                   <motion.ul
                     variants={containerVariants}
-                    className="space-y-2"
+                    className="space-y-3"
                   >
                     {solution.features.map((feature, featureIndex) => (
                       <motion.li
                         key={featureIndex}
                         variants={featureVariants}
-                        className="flex items-center text-gray-600"
+                        className="flex items-center text-gray-600 group-hover:text-gray-700 transition-colors duration-300"
                       >
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2 group-hover:scale-125 transition-transform duration-300"></span>
                         {feature}
                       </motion.li>
                     ))}
@@ -127,20 +130,43 @@ export default function Solutions() {
 
         <motion.div
           variants={itemVariants}
-          className="mt-16 text-center"
+          className="mt-24 text-center"
         >
           <h3 className="text-2xl font-semibold mb-4 text-gray-900">Case Studies</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            <div className="bg-gray-50 p-6 rounded-xl shadow-sm">
-              <h4 className="font-semibold mb-2 text-gray-900">Delivery Hero</h4>
-              <p className="text-gray-600 mb-4">"We've sped up our integration of data sources by 25X. It takes me 2 hours max to connect up APIs and transform the data we need."</p>
-              <p className="text-sm text-gray-500">Dennis Zahrt, Director of Global IT Service Delivery</p>
-            </div>
-            <div className="bg-gray-50 p-6 rounded-xl shadow-sm">
-              <h4 className="font-semibold mb-2 text-gray-900">The Stepstone Group</h4>
-              <p className="text-gray-600 mb-4">"We have seen drastic efficiency improvements since we started using n8n. It's incredibly powerful, but also simple to use."</p>
-              <p className="text-sm text-gray-500">Luka Pilic, Marketplace Tech Lead</p>
-            </div>
+            {[
+              {
+                company: 'Delivery Hero',
+                quote: "We've sped up our integration of data sources by 25X. It takes me 2 hours max to connect up APIs and transform the data we need.",
+                author: 'Dennis Zahrt',
+                role: 'Director of Global IT Service Delivery',
+              },
+              {
+                company: 'The Stepstone Group',
+                quote: "We have seen drastic efficiency improvements since we started using n8n. It's incredibly powerful, but also simple to use.",
+                author: 'Luka Pilic',
+                role: 'Marketplace Tech Lead',
+              },
+            ].map((study, index) => (
+              <motion.div
+                key={index}
+                variants={itemVariants}
+                whileHover={{ y: -5 }}
+                className="group relative bg-white p-8 rounded-2xl shadow-sm hover:shadow-xl transition-all duration-300"
+              >
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="relative">
+                  <h4 className="font-semibold mb-4 text-gray-900 group-hover:text-primary transition-colors duration-300">
+                    {study.company}
+                  </h4>
+                  <p className="text-gray-600 mb-6 leading-relaxed italic">"{study.quote}"</p>
+                  <div className="text-sm text-gray-500">
+                    <p className="font-medium">{study.author}</p>
+                    <p>{study.role}</p>
+                  </div>
+                </div>
+              </motion.div>
+            ))}
           </div>
         </motion.div>
       </motion.div>
