@@ -1,6 +1,8 @@
 'use client'
 
 import { FaRobot, FaBrain, FaChartLine, FaShieldAlt } from 'react-icons/fa'
+import { motion } from 'framer-motion'
+import { useInView } from 'react-intersection-observer'
 
 const features = [
   {
@@ -26,25 +28,70 @@ const features = [
 ]
 
 export default function Features() {
+  const [ref, inView] = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+  })
+
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+      },
+    },
+  }
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+      },
+    },
+  }
+
   return (
-    <section className="py-16">
-      <div className="container mx-auto px-4">
-        <h2 className="text-3xl font-bold text-center mb-12">Key Features</h2>
+    <section className="py-16 bg-gray-50">
+      <motion.div
+        ref={ref}
+        variants={containerVariants}
+        initial="hidden"
+        animate={inView ? "visible" : "hidden"}
+        className="container mx-auto px-4"
+      >
+        <motion.h2
+          variants={itemVariants}
+          className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800"
+        >
+          Key Features
+        </motion.h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {features.map((feature, index) => (
-            <div
+            <motion.div
               key={index}
-              className="bg-white p-6 rounded-lg shadow-md hover:shadow-lg transition"
+              variants={itemVariants}
+              whileHover={{ scale: 1.05 }}
+              className="bg-white p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
             >
-              <div className="flex flex-col items-center text-center">
-                <div className="mb-4">{feature.icon}</div>
-                <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
+              <div className="flex flex-col items-center text-center space-y-4">
+                <motion.div
+                  whileHover={{ rotate: 360 }}
+                  transition={{ duration: 0.5 }}
+                  className="mb-4 p-3 bg-primary bg-opacity-10 rounded-full"
+                >
+                  {feature.icon}
+                </motion.div>
+                <h3 className="text-xl font-semibold text-gray-800">{feature.title}</h3>
                 <p className="text-gray-600">{feature.description}</p>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
-      </div>
+      </motion.div>
     </section>
   )
 } 
