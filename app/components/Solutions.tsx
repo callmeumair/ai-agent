@@ -1,33 +1,33 @@
 'use client'
 
-import { FaRobot, FaComment, FaImage, FaCode } from 'react-icons/fa'
+import { FaRobot, FaComment, FaImage, FaCode, FaServer, FaShieldAlt, FaChartLine } from 'react-icons/fa'
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 
 const solutions = [
   {
     icon: <FaRobot className="text-4xl text-primary" />,
-    title: 'AI Chatbots',
-    description: 'Intelligent chatbots for customer support and engagement.',
-    features: ['Natural Language Processing', '24/7 Availability', 'Multi-language Support'],
+    title: 'IT Ops',
+    description: 'On-board new employees and provision accounts',
+    features: ['Automated account creation', 'Access management', 'Resource provisioning'],
   },
   {
-    icon: <FaComment className="text-4xl text-primary" />,
-    title: 'Text Analysis',
-    description: 'Advanced text analysis for sentiment and content understanding.',
-    features: ['Sentiment Analysis', 'Content Classification', 'Entity Recognition'],
+    icon: <FaShieldAlt className="text-4xl text-primary" />,
+    title: 'Sec Ops',
+    description: 'Enrich security incident tickets',
+    features: ['Automated threat detection', 'Incident response', 'Security monitoring'],
   },
   {
-    icon: <FaImage className="text-4xl text-primary" />,
-    title: 'Computer Vision',
-    description: 'Image and video analysis for various applications.',
-    features: ['Object Detection', 'Facial Recognition', 'Scene Understanding'],
+    icon: <FaServer className="text-4xl text-primary" />,
+    title: 'Dev Ops',
+    description: 'Convert natural language commands into API calls',
+    features: ['CI/CD automation', 'Infrastructure as code', 'Deployment management'],
   },
   {
-    icon: <FaCode className="text-4xl text-primary" />,
-    title: 'Code Generation',
-    description: 'AI-powered code generation and assistance.',
-    features: ['Code Completion', 'Bug Detection', 'Documentation Generation'],
+    icon: <FaChartLine className="text-4xl text-primary" />,
+    title: 'Sales',
+    description: 'Generate customer insights from grouped reviews',
+    features: ['Customer analytics', 'Review analysis', 'Sales automation'],
   },
 ]
 
@@ -70,7 +70,7 @@ export default function Solutions() {
   }
 
   return (
-    <section className="py-16 bg-white">
+    <section className="py-20 bg-white">
       <motion.div
         ref={ref}
         variants={containerVariants}
@@ -80,28 +80,29 @@ export default function Solutions() {
       >
         <motion.h2
           variants={itemVariants}
-          className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-800"
+          className="text-3xl md:text-4xl font-bold text-center mb-12 text-gray-900"
         >
-          AI Solutions
+          Use Cases
         </motion.h2>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {solutions.map((solution, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
-              whileHover={{ scale: 1.02 }}
-              className="bg-gray-50 p-6 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300"
+              whileHover={{ y: -5 }}
+              className="bg-gray-50 p-8 rounded-xl shadow-sm hover:shadow-md transition-all duration-300"
             >
-              <div className="flex flex-col md:flex-row md:items-start gap-6">
+              <div className="flex flex-col md:flex-row gap-6">
                 <motion.div
                   whileHover={{ rotate: 360 }}
                   transition={{ duration: 0.5 }}
-                  className="flex-shrink-0 p-4 bg-primary bg-opacity-10 rounded-full"
+                  className="flex-shrink-0 p-4 bg-primary/10 rounded-full"
                 >
                   {solution.icon}
                 </motion.div>
-                <div className="flex-grow">
-                  <h3 className="text-xl font-semibold mb-2 text-gray-800">{solution.title}</h3>
+                <div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900">{solution.title}</h3>
                   <p className="text-gray-600 mb-4">{solution.description}</p>
                   <motion.ul
                     variants={containerVariants}
@@ -111,21 +112,9 @@ export default function Solutions() {
                       <motion.li
                         key={featureIndex}
                         variants={featureVariants}
-                        className="flex items-center text-gray-700"
+                        className="flex items-center text-gray-600"
                       >
-                        <motion.span
-                          animate={{
-                            scale: [1, 1.2, 1],
-                          }}
-                          transition={{
-                            duration: 1,
-                            repeat: Infinity,
-                            repeatDelay: 1,
-                          }}
-                          className="text-primary mr-2 text-lg"
-                        >
-                          •
-                        </motion.span>
+                        <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2"></span>
                         {feature}
                       </motion.li>
                     ))}
@@ -135,6 +124,25 @@ export default function Solutions() {
             </motion.div>
           ))}
         </div>
+
+        <motion.div
+          variants={itemVariants}
+          className="mt-16 text-center"
+        >
+          <h3 className="text-2xl font-semibold mb-4 text-gray-900">Case Studies</h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            <div className="bg-gray-50 p-6 rounded-xl shadow-sm">
+              <h4 className="font-semibold mb-2 text-gray-900">Delivery Hero</h4>
+              <p className="text-gray-600 mb-4">"We've sped up our integration of data sources by 25X. It takes me 2 hours max to connect up APIs and transform the data we need."</p>
+              <p className="text-sm text-gray-500">Dennis Zahrt, Director of Global IT Service Delivery</p>
+            </div>
+            <div className="bg-gray-50 p-6 rounded-xl shadow-sm">
+              <h4 className="font-semibold mb-2 text-gray-900">The Stepstone Group</h4>
+              <p className="text-gray-600 mb-4">"We have seen drastic efficiency improvements since we started using n8n. It's incredibly powerful, but also simple to use."</p>
+              <p className="text-sm text-gray-500">Luka Pilic, Marketplace Tech Lead</p>
+            </div>
+          </div>
+        </motion.div>
       </motion.div>
     </section>
   )
