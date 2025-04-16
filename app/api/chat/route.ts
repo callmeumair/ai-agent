@@ -7,7 +7,23 @@ const openai = new OpenAI({
 
 export async function POST(req: Request) {
   try {
+    // Check if API key is configured
+    if (!process.env.OPENAI_API_KEY) {
+      return NextResponse.json(
+        { error: 'OpenAI API key is not configured' },
+        { status: 500 }
+      )
+    }
+
     const { messages } = await req.json()
+
+    // Validate messages
+    if (!messages || !Array.isArray(messages)) {
+      return NextResponse.json(
+        { error: 'Invalid messages format' },
+        { status: 400 }
+      )
+    }
 
     const completion = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
